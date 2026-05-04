@@ -1,0 +1,27 @@
+<div class="drawer lg:drawer-open min-h-screen bg-base-200">
+  <!-- Checkbox invisible para controlar el drawer en móvil -->
+  <input id="main-drawer" type="checkbox" class="drawer-toggle" />
+  
+  <div class="drawer-content flex flex-col">
+    <!-- Navbar superior (visible principalmente en móvil para abrir el menú) -->
+    <div class="w-full navbar bg-base-100 shadow-sm lg:hidden">
+      <div class="flex-none">
+        <label for="main-drawer" aria-label="abrir menú" class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+      </div>
+      <div class="flex-1 px-2 mx-2 font-bold text-primary">SIGA</div>
+    </div>
+
+    <!-- Contenido principal de la página (Rutas hijas) -->
+    <main class="flex-1 p-6 lg:p-10 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div> 
+  
+  <div class="drawer-side z-50 shadow-xl lg:shadow-none">
+    <label for="main-drawer" aria-label="cerrar menú" class="drawer-overlay"></label> 
+    <!-- Componente del Menú Lateral -->
+    <app-lateral-menu></app-lateral-menu>
+  </div>
+</div>

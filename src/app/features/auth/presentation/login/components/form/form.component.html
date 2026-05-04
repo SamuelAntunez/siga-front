@@ -1,0 +1,110 @@
+<form class="flex flex-col gap-5 w-full" (submit)="onSubmit(); $event.preventDefault()">
+  
+  @if (errorMessage()) {
+    <div class="alert alert-error shadow-sm rounded-xl py-2 flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span class="text-xs font-bold">{{ errorMessage() }}</span>
+    </div>
+  }
+
+  <label class="floating-label">
+    <input
+      type="email"
+      placeholder="Correo electrónico"
+      class="peer input input-md w-full border-2 transition-all duration-200 outline-hidden"
+      [class.border-gray-200]="email().length === 0 && !emailError()"
+      [class.border-primary]="email().length > 0 && !emailError()"
+      [class.border-red-500]="emailError()"
+      [class.focus:border-primary]="!emailError()"
+      [class.focus:border-red-500]="emailError()"
+      (input)="email.set($any($event.target).value); emailError.set(false)"
+      (blur)="validateEmail()"
+      required
+    />
+    <span
+      class="transition-colors duration-200"
+      [class.text-base-content/50]="email().length === 0 && !emailError()"
+      [class.text-primary]="email().length > 0 && !emailError()"
+      [class.text-red-500]="emailError()"
+      [class.peer-focus:text-primary]="!emailError()"
+      [class.peer-focus:text-red-500]="emailError()"
+    >
+      Correo electrónico
+    </span>
+  </label>
+
+  <label class="floating-label relative">
+    <input
+      type="password"
+      placeholder="Contraseña"
+      class="peer input input-md w-full border-2 transition-all duration-200 outline-hidden"
+      [class.border-gray-200]="password().length === 0 && !passwordError()"
+      [class.border-primary]="password().length > 0 && !passwordError()"
+      [class.border-red-500]="passwordError()"
+      [class.focus:border-primary]="!passwordError()"
+      [class.focus:border-red-500]="passwordError()"
+      (input)="password.set($any($event.target).value); passwordError.set(false)"
+      (blur)="validatePassword(); resetCapsLock()"
+      required
+      (keyup)="checkCapsLock($event)"
+      (keydown)="checkCapsLock($event)"
+    />
+    <span
+      class="transition-colors duration-200"
+      [class.text-base-content/50]="password().length === 0 && !passwordError()"
+      [class.text-primary]="password().length > 0 && !passwordError()"
+      [class.text-red-500]="passwordError()"
+      [class.peer-focus:text-primary]="!passwordError()"
+      [class.peer-focus:text-red-500]="passwordError()"
+    >
+      Contraseña
+    </span>
+
+    @if (isCapsLockOn()) {
+      <div
+        class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-warning animate-pulse pointer-events-none"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 9a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h18z" />
+          <path d="M7 14h.01" />
+          <path d="M11 14h.01" />
+          <path d="M15 14h.01" />
+          <path d="M17 14h.01" />
+        </svg>
+        <span class="text-[10px] font-bold uppercase tracking-tighter">Mayúsculas activas</span>
+      </div>
+    }
+  </label>
+
+  <div class="card-actions mt-2">
+    <button class="btn btn-primary btn-block text-base font-bold h-12 rounded-full" type="submit" [disabled]="isLoading()">
+      @if (isLoading()) {
+        <span class="loading loading-spinner"></span>
+      } @else {
+        Ingresar al Sistema
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      }
+    </button>
+  </div>
+</form>
+

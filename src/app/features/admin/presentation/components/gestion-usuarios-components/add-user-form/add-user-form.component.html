@@ -1,0 +1,33 @@
+<dialog class="modal" [class.modal-open]="isOpen()">
+  <div
+    class="modal-box bg-base-100 rounded-[2.5rem] shadow-2xl border border-base-200 max-w-2xl p-8 md:p-12"
+  >
+    <!-- Header -->
+    <div class="mb-6">
+      <app-page-header
+        title="Nuevo"
+        highlight="Usuario"
+        subtitle="Completa los datos para registrar un nuevo integrante."
+      ></app-page-header>
+    </div>
+
+    <form
+      [formGroup]="userForm"
+      (ngSubmit)="onSubmit()"
+      class="grid grid-cols-1 md:grid-cols-2 gap-6"
+    >
+      <app-add-user-name [form]="userForm" class="md:col-span-2"></app-add-user-name>
+      <app-add-user-email [form]="userForm" class="md:col-span-1"></app-add-user-email>
+      <app-add-user-role [form]="userForm" class="md:col-span-1"></app-add-user-role>
+      <app-add-user-password [form]="userForm" class="md:col-span-2"></app-add-user-password>
+      <app-add-user-error [errorMessage]="errorMessage()" class="md:col-span-2"></app-add-user-error>
+      <app-add-user-actions
+        [isInvalid]="userForm.invalid"
+        [isLoading]="isLoading()"
+        (cancel)="closeModal()"
+        class="md:col-span-2"
+      ></app-add-user-actions>
+    </form>
+  </div>
+  <div class="modal-backdrop bg-base-300/60 backdrop-blur-md" (click)="closeModal()"></div>
+</dialog>

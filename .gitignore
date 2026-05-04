@@ -1,0 +1,38 @@
+# Compiled output
+/dist
+/tmp
+/out-file
+/.angular
+
+# Dependencies
+/node_modules
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.*
+!src/environments/environment.ts
+!src/environments/environment.development.ts
+
+# Optional: If you want to ignore environment files by default but keep templates
+# src/environments/environment.prod.ts
+# src/environments/environment.ts

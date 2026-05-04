@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: siga-light --default, dark;
+}
+
+@plugin "daisyui/theme" {
+  name: "siga-light";
+  default: true;
+  --color-primary: #1e40af; /* Azul Corporativo */
+  --color-primary-content: #ffffff;
+  --color-secondary: #facc15; /* Amarillo de acento */
+  --color-secondary-content: #1e3a8a;
+  --color-accent: #3b82f6; /* Azul brillante */
+  --color-accent-content: #ffffff;
+  --color-neutral: #1f2937;
+  --color-neutral-content: #ffffff;
+  --color-base-100: #ffffff; /* Fondo Blanco */
+  --color-base-200: #f8fafc;
+  --color-base-300: #f1f5f9;
+  --color-base-content: #1e293b;
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1.5rem;
+}
+
